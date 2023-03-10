@@ -1,0 +1,13 @@
+{
+    "files.associations": {
+        "segger_rtt.h": "c",
+        "main.h": "c",
+        "string.h": "c",
+        "stdlib.h": "c",
+        "stdio.h": "c",
+        "eeprom.h": "c",
+        "flash_if.h": "c",
+        "update.h": "c"
+    },
+    "cortex-debug.variableUseNaturalFormat": false
+}

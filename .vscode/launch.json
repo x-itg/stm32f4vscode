@@ -1,0 +1,66 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "0.2.0",
+    "configurations": [
+        {
+            // For the Cortex-Debug extension
+            "type": "cortex-debug",
+            "servertype": "openocd",
+            "request": "launch",
+            "name": "Debug VESC - ST-Link",
+            "executable": "${workspaceRoot}/build/f411.elf",
+            "configFiles": [
+                "C:/Program Files/OpenOCD/0.10.0-13/scripts/interface/stlink-v2.cfg",
+                "C:/Program Files/OpenOCD/0.10.0-13/scripts/target/stm32f4x_stlink.cfg",
+            ],
+            "cwd": "${workspaceRoot}"
+        },
+        {
+            // For the Cortex-Debug extension
+            "type": "cortex-debug",
+            "servertype": "openocd",
+            "request": "launch",
+            "name": "Debug VESC - ST-Link - FreeRTOS",
+            "executable": "${workspaceRoot}/build/f411.elf",
+            "rtos": "FreeRTOS",
+            "configFiles": [
+                "C:/Program Files/OpenOCD/0.10.0-13/scripts/interface/stlink-v2.cfg",
+                "C:/Program Files/OpenOCD/0.10.0-13/scripts/target/stm32f4x_stlink.cfg",
+            ],
+            "cwd": "${workspaceRoot}"
+        },
+        {
+            // For the Cortex-Debug extension
+            // ssh -t odrv -L3333:localhost:3333 bash -c "\"openocd '-f' 'interface/stlink-v2.cfg' '-f' 'target/stm32f4x_stlink.cfg'\""
+            "type": "cortex-debug",
+            "servertype": "external",
+            "gdbTarget": "localhost:3333",
+            "preLaunchCommands": [
+                "load"
+            ],
+            "request": "launch",
+            "name": "Debug VESC via external server",
+            "executable": "${workspaceRoot}/build/f411.elf",
+            "configFiles": [
+                "C:/Program Files/OpenOCD/0.10.0-13/scripts/interface/stlink-v2.cfg",
+                "C:/Program Files/OpenOCD/0.10.0-13/scripts/target/stm32f4x_stlink.cfg",
+            ],
+            "cwd": "${workspaceRoot}"
+        },
+        {
+            // For the Cortex-Debug extensions
+            "type": "cortex-debug",
+            "servertype": "bmp",
+            "request": "launch",
+            "name": "Debug VESC - Black Magic Probe",
+            "executable": "${workspaceRoot}/build/f411.elf",
+            "device": "STM32F4xx",
+            "BMPGDBSerialPort": "${env:BMP_PORT}",
+            "interface": "swd",
+            "targetId": 1,
+            "armToolchainPath": "${env:ARM_GCC_ROOT}/bin/",
+            "cwd": "${workspaceRoot}"
+        }
+    ]
+}
